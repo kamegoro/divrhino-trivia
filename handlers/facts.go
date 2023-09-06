@@ -11,7 +11,10 @@ func ListFacts(c *fiber.Ctx) error {
 
 	database.DB.Db.Find(&facts)
 
-	return c.Status(200).JSON(facts)
+	return c.Render("index", fiber.Map{
+		"Title": "Div Rhino Trivia Time",
+		"Subtitle": "Facts for times with friends!",
+	})
 }
 
 func CreateFact(c *fiber.Ctx) error {
