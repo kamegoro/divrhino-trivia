@@ -14,6 +14,7 @@ func ListFacts(c *fiber.Ctx) error {
 	return c.Render("index", fiber.Map{
 		"Title": "Div Rhino Trivia Time",
 		"Subtitle": "Facts for times with friends!",
+		"Facts": facts,
 	})
 }
 

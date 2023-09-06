@@ -1,2 +1,13 @@
-<p>{{ .Title }}</p>
-<p>{{ .Subtitle }}</p>
+<div>
+  {{ if .Facts }} {{ range .Facts }}
+  <div>
+    <p>{{ .Question }}</p>
+    <p>{{ .Answer }}</p>
+  </div>
+  {{ end }} {{ else }}
+  <div>
+    <p>No facts yet.</p>
+    <p><a href="/fact">Add new</a></p>
+  </div>
+  {{ end }}
+</div>
