@@ -1,4 +1,4 @@
-name: "Lint"
+name: Go package
 
 on:
   workflow_dispatch:
@@ -6,12 +6,10 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  checks: write
   contents: read
-  pull-requests: write
 
 jobs:
-  ci:
+  build:
     timeout-minutes: 10
 
     runs-on: ubuntu-latest
@@ -29,11 +27,8 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
 
-      - name: golangci-lint
-        uses: reviewdog/action-golangci-lint@v2
-        with:
-          github_token: ${{ secrets.github_token }}
-          go_version: ${{ matrix.go-version }}
-          reporter: github-pr-review
-          level: warning
-          golangci_lint_flags: "--config=.golangci.yaml"
+      - name: Install dependencies
+        run: go get .
+
+      - name: Build
+        run: go build -v ./...
