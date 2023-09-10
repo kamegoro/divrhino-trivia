@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/style/main.css?v=1" />
+    <link id="styles" rel="stylesheet" href="/style/main.css?v=1" />
   </head>
   <body class="wrapper">
     {{ template "header" . }}
@@ -14,3 +14,13 @@
     {{ embed }}
   </body>
 </html>
+
+<script id="main" src="/javascript/app.js"></script>
+
+<script>
+  const timeStamp = Date.now();
+  const stylesheetLint = document.querySelector("link#styles");
+  const appScriptLink = document.querySelector("script#main");
+  stylesheetLint.href += `?t=${timeStamp}`;
+  appScriptLink.src += `?t=${timeStamp}`;
+</script>
